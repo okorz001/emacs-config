@@ -5,6 +5,12 @@
 ;; Needed for Windows, to avoid starting in C:/windows/system32.
 (setq default-directory (getenv "HOME"))
 
+;; Disable backup files.
+;; Backup files (foo~) are not to be confused with auto-save files (#foo#).
+;; Backups are created after every save and are redundant with VC (e.g. git).
+;; Auto-saves are created (and deleted) by Emacs in case it crashes.
+(setq make-backup-files nil)
+
 ;; Move Emacs customization to a dedicated file.
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file)
