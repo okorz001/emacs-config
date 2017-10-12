@@ -1,0 +1,6 @@
+# Emacs packages are downloaded here.
+elpa/
+# Emacs local auto-saves.
+auto-save-list/
+# Emacs will maintain this file locally.
+custom.el
