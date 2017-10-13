@@ -35,3 +35,6 @@
   ;; MELPA Stable: public, non-free
   (add-repo "melpa-stable" "https://stable.melpa.org/packages/"))
 (package-initialize)
+
+;; Load theme if installed.
+(if (package-installed-p 'darktooth-theme) (load-theme 'darktooth))
