@@ -11,6 +11,11 @@
 ;; Auto-saves are created (and deleted) by Emacs in case it crashes.
 (setq make-backup-files nil)
 
+;; Remove scroll bars and the tool bar.
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
 ;; Move Emacs customization to a dedicated file.
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file)
