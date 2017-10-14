@@ -3,7 +3,7 @@
 
 ;; Start in home directory.
 ;; Needed for Windows, to avoid starting in C:/windows/system32.
-(setq default-directory (getenv "HOME"))
+(setq default-directory "~/")
 
 ;; Disable backup files.
 ;; Backup files (foo~) are not to be confused with auto-save files (#foo#).
