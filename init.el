@@ -16,6 +16,9 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+;; Show line numbers.
+(global-linum-mode)
+
 ;; Move Emacs customization to a dedicated file.
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file)
