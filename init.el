@@ -19,6 +19,9 @@
 ;; Show line numbers.
 (global-linum-mode)
 
+;; Use spaces instead of tabs.
+(setq-default indent-tabs-mode nil)
+
 ;; Move Emacs customization to a dedicated file.
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file)
