@@ -39,5 +39,11 @@
   (add-repo "melpa-stable" "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+;; Bootstrap use-package for package configuration.
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+(eval-when-compile (require 'use-package))
+
 ;; Load theme if installed.
-(if (package-installed-p 'darktooth-theme) (load-theme 'darktooth))
+(use-package darktooth-theme)
