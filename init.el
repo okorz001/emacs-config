@@ -48,11 +48,13 @@
   (package-install 'use-package))
 (eval-when-compile (require 'use-package))
 
-;; Load theme if installed.
-(use-package darktooth-theme)
+;; Load theme.
+(use-package darktooth-theme :ensure t)
 
 ;; Use ivy for incremental completion and search.
 (use-package ivy
+  ;; Pin from gnu since melpa has separate counsel and swiper packages.
+  :ensure t :pin gnu
   :config
   ;; Show number of candidates.
   (setq ivy-count-format "%d/%d ")
