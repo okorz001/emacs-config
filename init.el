@@ -62,6 +62,8 @@
   (setq ivy-extra-directories nil)
   ;; Add recently killed files to ivy-switch-buffer candidates.
   (setq ivy-use-virtual-buffers t)
+  ;; counsel-M-x will use smex to sort by function call frequency.
+  (use-package smex :ensure t)
   ;; Replace a bunch of default commands with ivy-enhanced versions.
   :bind (("C-s" . swiper)                      ; isearch-forward
          ("M-x" . counsel-M-x)                 ; execute-extended-command
