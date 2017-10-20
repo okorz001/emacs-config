@@ -50,3 +50,27 @@
 
 ;; Load theme if installed.
 (use-package darktooth-theme)
+
+;; Use ivy for incremental completion and search.
+(use-package ivy
+  :config
+  ;; Show number of candidates.
+  (setq ivy-count-format "%d/%d ")
+  ;; Remove . and .. from counsel-find-file candidates.
+  (setq ivy-extra-directories nil)
+  ;; Add recently killed files to ivy-switch-buffer candidates.
+  (setq ivy-use-virtual-buffers t)
+  ;; Replace a bunch of default commands with ivy-enhanced versions.
+  :bind (("C-s" . swiper)                      ; isearch-forward
+         ("M-x" . counsel-M-x)                 ; execute-extended-command
+         ("C-x C-f" . counsel-find-file)       ; find-file
+         ("C-x b" . ivy-switch-buffer)         ; switch-to-buffer
+         ("C-h v" . counsel-describe-variable) ; describe-variable
+         ("C-h f" . counsel-describe-function) ; describe-function
+         ("C-h b" . counsel-descbinds)         ; describe-bindings
+         ("M-y" . counsel-yank-pop)            ; yank-pop
+         :map ivy-minibuffer-map
+         ;; Flip ivy-done and ivy-alt-done so that completing directories
+         ;; continues completion instead of opening in dired.
+         ("RET" . ivy-alt-done) ; ivy-done
+         ("C-j" . ivy-done)))   ; ivy-alt-done

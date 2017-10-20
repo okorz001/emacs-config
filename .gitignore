@@ -4,3 +4,5 @@ elpa/
 auto-save-list/
 # Emacs will maintain this file locally.
 custom.el
+# Recent files opened on this host.
+recentf
