@@ -19,6 +19,9 @@
 ;; Show line numbers.
 (global-linum-mode)
 
+;; Use visual bell instead of beeping.
+(setq visible-bell t)
+
 ;; Use spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
 
