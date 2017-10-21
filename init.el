@@ -30,16 +30,26 @@
 
 ;; Configure Emacs package repositories.
 (require 'package)
-(cl-flet ((add-repo (name url)
-                    (add-to-list 'package-archives (cons name url) t)))
-  ;; Remove any default repositories since they may not use HTTPS.
-  (setq package-archives nil)
-  ;; GNU ELPA: official, free
-  (add-repo "gnu" "https://elpa.gnu.org/packages/")
-  ;; Marmalade: curated, free
-  (add-repo "marmalade" "https://marmalade-repo.org/packages/")
-  ;; MELPA Stable: public, non-free
-  (add-repo "melpa-stable" "https://stable.melpa.org/packages/"))
+(setq package-archives
+      '(;; GNU ELPA: official, free
+        ("gnu" . "https://elpa.gnu.org/packages/")
+        ;; Marmalade: curated, free
+        ("marmalade" . "https://marmalade-repo.org/packages/")
+        ;; MELPA Stable: public, non-free
+        ("melpa-stable" . "https://stable.melpa.org/packages/")
+        ;; MELPA: public, non-free, unstable
+        ("melpa" . "https://melpa.org/packages/")))
+;; Higher priority repository is preferred over lower priority even if the
+;; higher priority package has a lower version.
+(setq package-archive-priorities
+      '(;; Generally, if it's in ELPA, that's the canonical release.
+        ("gnu" . 2)
+        ;; Prefer newest version from either Marmalade or MELPA stable.
+        ("marmalade" . 1)
+        ("melpa-stable" . 1)
+        ;; MELPA tracks master branch of git so it is unstable.
+        ;; MELPA uses the commit date as the version so it usually wins.
+        ("melpa" . 0)))
 (package-initialize)
 
 ;; Bootstrap use-package for package configuration.
@@ -53,8 +63,7 @@
 
 ;; Use ivy for incremental completion and search.
 (use-package ivy
-  ;; Pin from gnu since melpa has separate counsel and swiper packages.
-  :ensure t :pin gnu
+  :ensure t
   :config
   ;; Show number of candidates.
   (setq ivy-count-format "%d/%d ")
