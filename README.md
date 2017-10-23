@@ -55,3 +55,10 @@ installed into Emacs's bin directory for HTTPS to work:
 * libtasn1-6.dll
 * libwinpthread-1.dll
 * zlib1.dll
+
+### Default Directory
+
+Launching Emacs from the Start Menu may result in a strange starting directory
+such as `C:\Windows\System32`. This can be changed by specifying the `Start in`
+property of the shortcut. This property can reference environment variables, so
+a sane multi-user friendly value is `%HOME%`, assuming it has been set.
