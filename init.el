@@ -61,6 +61,9 @@
   (package-install 'use-package))
 (eval-when-compile (require 'use-package))
 
+;; To debug package loading.
+(setq use-package-verbose t)
+
 ;; Load theme.
 (use-package darktooth-theme :ensure t)
 
@@ -90,3 +93,6 @@
          ;; continues completion instead of opening in dired.
          ("RET" . ivy-alt-done) ; ivy-done
          ("C-j" . ivy-done)))   ; ivy-alt-done
+
+;; To help debug deferred package loading.
+(message "Finished init.el")
