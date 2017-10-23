@@ -25,6 +25,19 @@
 ;; Use spaces instead of tabs.
 (setq-default indent-tabs-mode nil)
 
+;; Windows specific configuration.
+(when (eq system-type 'windows-nt)
+  ;; Many Emacs commands and packages depend on POSIX utilities.
+  ;; Git comes with MSYS, so add that to the front of the path.
+  ;; This fixes errors caused by using Windows find instead of POSIX find.
+  (let* ((git-exe  (executable-find "git"))
+         (msys-bin (replace-regexp-in-string "/cmd/git.exe$" "/usr/bin" git-exe)))
+    ;; exec-path is used by Emacs to launch programs.
+    (setq exec-path (cons msys-bin exec-path))
+    ;; PATH is used by inferior programs, e.g. projectile execs a shell.
+    ;; This could cause problems if something expects Windows find.
+    (setenv "PATH" (concat msys-bin path-separator (getenv "PATH")))))
+
 ;; Move Emacs customization to a dedicated file.
 (setq custom-file "~/.emacs.d/custom.el")
 (unless (file-exists-p custom-file)
@@ -93,6 +106,19 @@
          ;; continues completion instead of opening in dired.
          ("RET" . ivy-alt-done) ; ivy-done
          ("C-j" . ivy-done)))   ; ivy-alt-done
+
+;; Use projectile for project support.
+(use-package projectile
+  :ensure t
+  :defer 1
+  :init
+  ;; Force external indexing on Windows.
+  (setq projectile-indexing-method 'alien)
+  :config
+  ;; Use ivy for completion.
+  (setq projectile-completion-system 'ivy)
+  ;; Enable projectile in all buffers.
+  (projectile-global-mode))
 
 ;; To help debug deferred package loading.
 (message "Finished init.el")

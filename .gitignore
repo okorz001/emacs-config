@@ -6,3 +6,6 @@ auto-save-list/
 custom.el
 # Recent files opened on this host.
 recentf
+# Local projectile data.
+projectile.cache
+projectile-bookmarks.eld
