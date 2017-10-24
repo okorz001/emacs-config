@@ -12,8 +12,9 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; Show line numbers.
-(global-linum-mode)
+;; Show line and column numbers in the mode line.
+(line-number-mode)
+(column-number-mode)
 
 ;; Use visual bell instead of beeping.
 (setq visible-bell t)
